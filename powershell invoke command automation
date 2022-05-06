@@ -15,3 +15,7 @@ Invoke-Command -ComputerName BigServer `
 
 -ComputerName (Get-Content "C:\ServerList.txt")  `
 -FilePath "C:\Services.ps1"
+
+
+Invoke-Command -ComputerName hqew1vcpapp01.hq000.identity.msc.com `
+-FilePath "C:\Temp\pr\hostname.ps1" -credential $cred
