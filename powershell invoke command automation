@@ -1,0 +1,17 @@
+# $cred = get-credential --> it will get credetiol and use invoke command
+
+####the below commands help to store the credetiol file and use to automation####
+###link reference https://stackoverflow.com/questions/18053437/powershell-remoting-with-credential####
+
+read-host -assecurestring | convertfrom-securestring | out-file C:\localdrivespace\username-password-encrypted.txt
+$username = "domain\username"
+$password = cat C:\localdrivespace\username-password-encrypted.txt | convertto-securestring
+$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $username, $password
+
+
+Invoke-Command -ComputerName BigServer `
+-FilePath "C:\Services.ps1"
+
+
+-ComputerName (Get-Content "C:\ServerList.txt")  `
+-FilePath "C:\Services.ps1"
